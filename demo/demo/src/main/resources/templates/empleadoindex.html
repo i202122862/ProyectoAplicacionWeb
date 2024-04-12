@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <title>Listar</title>
+</head>
+
+<body>
+<header class="bg-primary text-center text-white p-3">
+    <h1>Listado de Empleados</h1>
+</header>
+
+<nav class="container p-3">
+    <a th:href="@{/empleado/new}" class="btn btn-success">Nuevo</a>
+    <a th:href="@{/empleado/exportarPDF}" class="btn btn-secondary">Exportar a PDF</a>
+    <a th:href="@{/empleado/exportarExcel}" class="btn btn-success">Exportar a Excel</a>
+</nav>
+
+<main class="container">
+    <table class="table">
+        <thead>
+        <tr>
+            <th>Id</th>
+            <th>Nombres</th>
+            <th>Posición</th>
+            <th>Email</th>
+            <th>Teléfono</th>
+            <th>Acciones</th>
+
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="persona:${personas}">
+            <td th:text="${persona.employeeId}"></td>
+            <td th:text="${persona.name}"></td>
+            <td th:text="${persona.position}"></td>
+            <td th:text="${persona.email}"></td>
+            <td th:text="${persona.phone}"></td>
+            <td>
+                <a th:href="@{/empleado/editar/}+${persona.employeeId}" class="btn btn-warning">Editar</a>
+                <a th:href="@{/empleado/eliminar/}+${persona.employeeId}" class="btn btn-danger">Eliminar</a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</main>
+
+<footer class="bg-dark text-end text-white p-3">
+    <h3>Redes Sociales</h3>
+</footer>
+</body>
+
+</html>
