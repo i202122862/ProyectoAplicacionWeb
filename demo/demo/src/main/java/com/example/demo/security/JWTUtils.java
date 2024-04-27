@@ -10,6 +10,7 @@ import org.springframework.stereotype.Component;
 
 import java.security.Key;
 import java.util.Date;
+import java.util.List;
 import java.util.function.Function;
 
 @Component
@@ -22,8 +23,13 @@ public class JWTUtils {
     private String timeExpiration;
 
 
-    public String generateAccessToken(String username){
+    public String generateAccessToken(String username, List<String> roles){
+
+        Claims claims = Jwts.claims().setSubject(username);
+        claims.put("roles", roles);  // Añade el claim de roles
+
         return Jwts.builder()
+                .setClaims(claims)
                 .setSubject(username)
                 .setIssuedAt(new Date(System.currentTimeMillis()))
                 .setExpiration(new Date(System.currentTimeMillis() + Long.parseLong(timeExpiration)))
