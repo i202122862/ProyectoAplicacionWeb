@@ -28,12 +28,11 @@ public class JWTAuthorizationFilter extends OncePerRequestFilter {
                                     @NonNull HttpServletResponse response,
                                     @NonNull FilterChain filterChain) throws ServletException, IOException {
 
-        System.out.println("revisando filtro autorización");
-        System.out.println("Content length: " + request.getContentLength());
+
         String tokenHeader = request.getHeader("Authorization");
 
         if(tokenHeader != null && tokenHeader.startsWith("Bearer ")){
-            System.out.println("entr{o bearer.");
+
             String token = tokenHeader.substring(7);
 
             if(jwtUtils.isJWTValid(token)){

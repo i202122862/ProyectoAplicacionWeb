@@ -1,29 +1,22 @@
 package com.example.demo.controller;
 
+import com.example.demo.interfaceservice.ICustomerService;
+import com.example.demo.interfaceservice.ISaleService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @CrossOrigin(value = "*")
 public class TestController {
 
-    @PostMapping("/test")
-    public ResponseEntity<?> test(@RequestBody Login login){
+    @Autowired
+    private ICustomerService service;
 
-        System.out.println("prueba....");
-        System.out.println(login.username);
-        System.out.println(login.password);
+    @GetMapping("/test")
+    public ResponseEntity<?> test(){
 
-        return new ResponseEntity<>("",HttpStatus.OK);
+        return new ResponseEntity<>(service.listar(),HttpStatus.OK);
     }
-}
-
-
-class Login{
-    public String username;
-    public String password;
 }

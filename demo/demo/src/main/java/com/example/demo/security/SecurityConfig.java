@@ -53,7 +53,7 @@ public class SecurityConfig {
                 .csrf().disable() // Deshabilita CSRF
                 //.csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests( auth -> {
-                    auth.requestMatchers("/test","/create-user","/cliente/listar").permitAll();
+                    auth.requestMatchers("/create-user","/cliente/listar").permitAll();
                     auth.anyRequest().authenticated();
                 }).
                 sessionManagement(session->{

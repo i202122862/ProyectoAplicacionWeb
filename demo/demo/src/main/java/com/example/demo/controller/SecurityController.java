@@ -75,7 +75,7 @@ public class SecurityController {
     //@PreAuthorize("hasRole('ROLE_USER')")//pruebas para roles
 
     @GetMapping("/test-role")
-    @Secured("ROLE_USER")
+    @Secured("ROLE_ADMIN")
     public ResponseEntity<?> getAdminData() {
 
         // Código que solo debe ser accesible por usuarios con rol ADMIN
